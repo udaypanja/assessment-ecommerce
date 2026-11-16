@@ -1,12 +1,6 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { ShopStore } from './shop.store';
 
-@Component({
-  selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
-})
-export class App {
-  protected readonly title = signal('E-commerce');
-}
+@Component({ selector: 'app-root', imports: [RouterOutlet, RouterLink], templateUrl: './app.html', styleUrl: './app.css' })
+export class App { readonly shop = inject(ShopStore); }

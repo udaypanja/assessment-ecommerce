@@ -1,0 +1,61 @@
+<section class="register-page">
+  <div class="register-photo">
+    <span class="eyebrow">A good place to begin</span>
+    <h2>Make yourself<br /><em>at home.</em></h2>
+    <p>Join the Sunday list for new finds, small stories, and 10% off your first order.</p>
+  </div>
+  <div class="register-form-wrap">
+    <div class="register-form">
+      <span class="eyebrow">A little hello</span>
+      <h1>Create your account<span>.</span></h1>
+      <p>Save your favorites and make checkout a breeze.</p>
+      <form #form="ngForm" (ngSubmit)="submit(form)" novalidate>
+        <label for="name">Your name</label
+        ><input
+          id="name"
+          name="name"
+          [(ngModel)]="name"
+          required
+          minlength="2"
+          #nameField="ngModel"
+          placeholder="e.g. Jamie Taylor"
+        /><small class="field-error" *ngIf="nameField.invalid && nameField.touched"
+          >Please enter your name.</small
+        ><label for="email">Email address</label
+        ><input
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          required
+          email
+          #emailField="ngModel"
+          placeholder="you@example.com"
+          type="email"
+        /><small class="field-error" *ngIf="emailField.invalid && emailField.touched"
+          >Enter a valid email address.</small
+        ><label for="password">Password</label
+        ><input
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+          minlength="8"
+          #passwordField="ngModel"
+          placeholder="At least 8 characters"
+          type="password"
+        /><small class="field-error" *ngIf="passwordField.invalid && passwordField.touched"
+          >Use at least 8 characters.</small
+        ><button class="button button-dark register-button" type="submit">
+          Create account <span>→</span>
+        </button>
+        <p class="register-success" *ngIf="created">
+          You're on the list, {{ name }}. Welcome to Sunday.
+        </p>
+      </form>
+      <span class="login-note"
+        >Already have an account?
+        <a href="#" (click)="$event.preventDefault(); created = true">Sign in</a></span
+      >
+    </div>
+  </div>
+</section>

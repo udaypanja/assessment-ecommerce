@@ -1,0 +1,30 @@
+<section class="detail section-wrap" *ngIf="product as p">
+  <a routerLink="/shop" class="back-link">← Back to the good things</a>
+  <div class="detail-layout">
+    <div class="detail-image"><img [src]="p.image" [alt]="p.name" /></div>
+    <div class="detail-copy">
+      <span class="eyebrow">{{ p.category }} · {{ p.label || 'MADE WITH CARE' }}</span>
+      <h1>{{ p.name }}</h1>
+      <div class="detail-price">
+        {{ p.price | currency: 'USD' : 'symbol' : '1.0-0' }}
+        <del *ngIf="p.oldPrice">{{ p.oldPrice | currency: 'USD' : 'symbol' : '1.0-0' }}</del>
+      </div>
+      <p>{{ p.description }}</p>
+      <div class="detail-rule"></div>
+      <span class="detail-option-label">COLOR</span
+      ><span class="detail-color"><i></i>{{ p.color }}</span
+      ><button class="button button-dark add-detail" (click)="add()">
+        Add to bag <span>{{ p.price | currency: 'USD' : 'symbol' : '1.0-0' }}</span>
+      </button>
+      <p class="shipping-note">✳ Free shipping on orders over $75</p>
+      <div class="detail-rule"></div>
+      <span class="detail-small"
+        >A little care goes a long way. Designed for everyday use and made to stick around.</span
+      >
+    </div>
+  </div>
+</section>
+<section class="section-wrap" *ngIf="!product">
+  <h1>We couldn't find that one.</h1>
+  <a routerLink="/shop">Back to shop →</a>
+</section>

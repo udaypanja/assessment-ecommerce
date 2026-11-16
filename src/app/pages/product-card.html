@@ -1,0 +1,21 @@
+<article class="product-card">
+  <a class="product-photo" [routerLink]="['/product', product.id]"
+    ><img [src]="product.image" [alt]="product.name" /><span
+      class="product-label"
+      *ngIf="product.label"
+      >{{ product.label }}</span
+    ><button
+      class="quick-add"
+      type="button"
+      (click)="$event.preventDefault(); $event.stopPropagation(); add()"
+      aria-label="Add to bag"
+    >
+      +
+    </button></a
+  >
+  <div class="product-info">
+    <a [routerLink]="['/product', product.id]" class="product-name">{{ product.name }}</a
+    ><span class="product-price">{{ product.price | currency: 'USD' : 'symbol' : '1.0-0' }}</span>
+  </div>
+  <span class="product-category">{{ product.category }}</span>
+</article>

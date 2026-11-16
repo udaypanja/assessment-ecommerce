@@ -1,0 +1,75 @@
+<section class="cart-page section-wrap">
+  <span class="eyebrow">Your little collection</span>
+  <h1>Your bag<span>.</span></h1>
+  <div class="cart-layout" *ngIf="shop.cart().length; else empty">
+    <div class="cart-items">
+      <article class="cart-item" *ngFor="let item of shop.cart()">
+        <a [routerLink]="['/product', item.product.id]" class="cart-thumb"
+          ><img [src]="item.product.image" [alt]="item.product.name"
+        /></a>
+        <div class="cart-item-main">
+          <a [routerLink]="['/product', item.product.id]" class="cart-name">{{
+            item.product.name
+          }}</a
+          ><span>{{ item.product.color }}</span>
+          <div class="quantity">
+            <button (click)="shop.change(item.product.id, -1)" aria-label="Decrease quantity">
+              −</button
+            ><span>{{ item.quantity }}</span
+            ><button (click)="shop.change(item.product.id, 1)" aria-label="Increase quantity">
+              +
+            </button>
+          </div>
+        </div>
+        <div class="cart-item-end">
+          <span>{{
+            item.product.price * item.quantity | currency: 'USD' : 'symbol' : '1.2-2'
+          }}</span
+          ><button class="remove-link" (click)="shop.remove(item.product.id)">Remove</button>
+        </div>
+      </article>
+    </div>
+    <aside class="order-summary">
+      <h2>Order summary</h2>
+      <div>
+        <span>Subtotal · {{ shop.count() }} items</span
+        ><span>{{ shop.subtotal() | currency: 'USD' : 'symbol' : '1.2-2' }}</span>
+      </div>
+      <div>
+        <span>Shipping</span><span>{{ shop.subtotal() >= 75 ? 'Complimentary' : '$6.00' }}</span>
+      </div>
+      <div class="summary-total">
+        <strong>Total</strong><strong>{{ total | currency: 'USD' : 'symbol' : '1.2-2' }}</strong>
+      </div>
+      <p>Shipping and taxes calculated at checkout.</p>
+      <button class="button button-dark pay-button" (click)="pay()">Pay now <span>→</span></button
+      ><span class="secure-note">♡ Secure, simple, and always thoughtful.</span>
+    </aside>
+  </div>
+  <ng-template #empty
+    ><div class="empty-cart">
+      <span>✳</span>
+      <h2>It's a little quiet in here.</h2>
+      <p>Your next everyday favorite is waiting to be found.</p>
+      <a routerLink="/shop" class="button button-dark">Explore the shop →</a>
+    </div></ng-template
+  >
+  <div class="modal-backdrop" *ngIf="orderPlaced" (click)="orderPlaced = false">
+    <div
+      class="order-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="order-title"
+      (click)="$event.stopPropagation()"
+    >
+      <button class="modal-close" (click)="orderPlaced = false" aria-label="Close">×</button
+      ><span class="success-mark">✓</span><span class="eyebrow">Thank you, truly</span>
+      <h2 id="order-title">Your order is in.</h2>
+      <p>Consider it taken care of. Your little collection is being wrapped with love.</p>
+      <span class="order-number">ORDER · SUN-{{ orderNumber }}</span
+      ><button class="button button-dark" (click)="orderPlaced = false">
+        Keep exploring <span>→</span>
+      </button>
+    </div>
+  </div>
+</section>

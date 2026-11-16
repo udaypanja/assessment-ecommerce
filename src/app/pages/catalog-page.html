@@ -1,0 +1,24 @@
+<section class="catalog section-wrap">
+  <div class="catalog-top">
+    <span class="eyebrow">Find your favorite</span>
+    <h1>Good things, <em>for every day.</em></h1>
+    <p>Useful, beautiful pieces that make the everyday feel a little more special.</p>
+  </div>
+  <div class="filter-row">
+    <span>{{ filtered.length }} considered things</span>
+    <div class="filters">
+      <button
+        *ngFor="let category of categories"
+        [class.selected]="active === category"
+        (click)="active = category"
+      >
+        {{ category }}
+      </button>
+    </div>
+  </div>
+  <div class="product-grid">
+    @for (product of filtered; track product.id) {
+      <product-card [product]="product" />
+    }
+  </div>
+</section>

@@ -1,0 +1,37 @@
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">A slower kind of living</span>
+    <h1>Make room for<br /><em>the everyday.</em></h1>
+    <p>Thoughtful things for the home, made to be used, loved, and lived in.</p>
+    <a routerLink="/shop" class="button button-dark">Explore the collection <span>↗</span></a>
+    <div class="hero-note"><span>✳</span> Made with care, for the moments that matter.</div>
+  </div>
+  <div class="hero-image" role="img" aria-label="Sunlit, thoughtfully styled living room"></div>
+  <div class="hero-index">01 <span>/</span> 03</div>
+</section>
+<section class="category-strip">
+  <a routerLink="/shop" [queryParams]="{ category: 'Home' }"
+    ><span class="category-number">01</span><span>Home & living</span><span>↗</span></a
+  ><a routerLink="/shop" [queryParams]="{ category: 'Kitchen' }"
+    ><span class="category-number">02</span><span>Table & kitchen</span><span>↗</span></a
+  ><a routerLink="/shop" [queryParams]="{ category: 'Accessories' }"
+    ><span class="category-number">03</span><span>Little essentials</span><span>↗</span></a
+  >
+</section>
+<section class="featured section-wrap">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">The good stuff</span>
+      <h2>A few <em>favorites.</em></h2>
+    </div>
+    <a routerLink="/shop" class="text-link">Shop everything <span>→</span></a>
+  </div>
+  <div class="product-grid">
+    @for (product of products.slice(0, 4); track product.id) {
+      <product-card [product]="product" />
+    }
+  </div>
+</section>
+<section class="values-band">
+  <span>✳ Thoughtfully made</span><span>◌ Small batch always</span><span>♡ Made to last</span>
+</section>
